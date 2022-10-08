@@ -33,9 +33,5 @@ have any chips to simulate the betting system (the fun part of poker).
 - As a user, I want to be able to remove chips from the pot
 - As a user, I want to be able to claim all the winnings from the pot
 - As a user, I want to be able to transfer my chips to another player directly
-- As a user, I want to be able to fold my hand
-- As a user, I want to be able to check 
-- As a user, I want to be able to raise by x amount 
-- As a user, I want to be able to call the bet
 
  
