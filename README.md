@@ -28,7 +28,6 @@ have any chips to simulate the betting system (the fun part of poker).
 - As a user, I want to be able to add a new player into the poker game
 - As a user, I want to be able to remove a player from the poker game
 - As a user, I want to be able to view each player's chip balance
-- As a user, I want to be able to edit starting chip balances
 - As a user, I want to be able to add chips into the pot
 - As a user, I want to be able to remove chips from the pot
 - As a user, I want to be able to claim all the winnings from the pot
