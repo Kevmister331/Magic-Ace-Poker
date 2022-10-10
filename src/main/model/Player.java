@@ -26,6 +26,7 @@ public class Player {
         playerBalance -= amount;
     }
 
+
     // Setter methods
     public void setPlayerName(String playerName) {
         this.playerName = playerName;

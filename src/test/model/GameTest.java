@@ -8,6 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameTest {
     private Game game;
 
+
     @BeforeEach
     void runBefore() {
         game = new Game();
@@ -34,5 +35,59 @@ class GameTest {
         assertEquals(game.getPlayers().get(0).getPlayerName(), "Kevin");
         assertEquals(game.getPlayers().get(0).getBalance(), 0);
     }
+
+    @Test
+    void testRemovePlayer() {
+        game.addPlayer("Kevin", 0);
+        game.addPlayer("Eric", 0);
+        game.addPlayer("Allan", 0);
+
+        System.out.println(game.getPlayers());
+
+        assertEquals(game.getPlayers().size(), 3);
+
+        game.removePlayer(0);
+
+        assertEquals(game.getPlayers().size(), 2);
+    }
+
+    @Test
+    void testMakeBet() {
+        game.addPlayer("Kevin", 1000);
+        game.addPlayer("Eric", 1000);
+
+        game.makeBet(game.getPlayerByName("Kevin"), 300);
+
+        assertEquals(game.getPotBalance(), 300);
+        assertEquals(game.getPlayerByName("Kevin").getBalance(), 700);
+        assertEquals(game.getPlayerByName("Eric").getBalance(), 1000);
+    }
+
+    @Test
+    void testClaimPot() {
+        game.addPlayer("Kevin", 1000);
+        game.addPlayer("Eric", 1000);
+
+        game.makeBet(game.getPlayerByName("Kevin"), 400);
+        game.makeBet(game.getPlayerByName("Eric"), 800);
+
+        assertEquals(game.getPotBalance(), 1200);
+        assertEquals(game.getPlayerByName("Kevin").getBalance(), 600);
+        assertEquals(game.getPlayerByName("Eric").getBalance(), 200);
+
+        game.claimPot(game.getPlayerByName("Kevin"));
+
+        assertEquals(game.getPotBalance(), 0);
+        assertEquals(game.getPlayerByName("Kevin").getBalance(), 1800);
+        assertEquals(game.getPlayerByName("Eric").getBalance(), 200);
+    }
+
+    @Test
+    void  testGetPlayerByName() {
+        game.addPlayer("Kevin", 0);
+        game.addPlayer("Eric", 0);
+        assertEquals(game.getPlayerByName("Eric"), game.getPlayers().get(1));
+    }
+
 
 }
