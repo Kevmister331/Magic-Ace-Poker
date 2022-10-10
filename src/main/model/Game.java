@@ -23,11 +23,17 @@ public class Game {
         this.players.add(new Player(playerName, balance));
     }
 
-    // REQUIRES: player name must be on the list, thus list size > 0
     // MODIFIES: this
-    // EFFECTS: removes a specified player from the list of players based on index
-    public void removePlayer(int index) {
-        this.players.remove(index);
+    // EFFECTS: removes a specified player from the list of players
+    public void removePlayer(String name) {
+        Player playerChosen = null;
+        for (Player player : this.players) {
+            if (player.getPlayerName().equals(name)) {
+                playerChosen = player;
+                break;
+            }
+        }
+        if (playerChosen != null) this.players.remove(playerChosen);
     }
 
     // REQUIRES: num > 0
@@ -46,7 +52,10 @@ public class Game {
         potBalance = 0;
     }
 
-    // Setters
+    public void printPlayerNames(Player listofplayers) {
+        System.out.println();
+    }
+
 
     // Getters
     public List<Player> getPlayers() {
@@ -66,6 +75,7 @@ public class Game {
         }
         return null;
     }
+
 
 
 

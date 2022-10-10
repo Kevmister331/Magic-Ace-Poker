@@ -46,9 +46,11 @@ class GameTest {
 
         assertEquals(game.getPlayers().size(), 3);
 
-        game.removePlayer(0);
-
+        game.removePlayer("Kevin");
         assertEquals(game.getPlayers().size(), 2);
+
+        game.removePlayer("Eric");
+        assertEquals(game.getPlayers().size(), 1);
     }
 
     @Test
