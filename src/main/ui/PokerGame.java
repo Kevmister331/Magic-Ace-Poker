@@ -128,9 +128,19 @@ public class PokerGame {
         String temp = input.next();
         int amount = Integer.parseInt(temp);
 
-        Player player = game.getPlayerByName(name);
-        game.makeBet(player, amount);
-        System.out.println(name + " has bet " + amount + " chips!");
+        int i = 0;
+
+        for (Player player : this.game.getPlayers()) {
+            if (player.getPlayerName().equals(name)) {
+                i++;
+                game.makeBet(player, amount);
+                System.out.println(name + " has bet " + amount + " chips!");
+                break;
+            }
+        }
+        if (i == 0) {
+            System.out.println("Player named " + name + " could not be found!");
+        }
     }
 
 
@@ -138,9 +148,21 @@ public class PokerGame {
         System.out.println("\nWho's our lucky winner?");
         String name = input.next();
 
-        System.out.println("Congrats! " + name + " just got " + game.getPotBalance() + " chips richer!");
-        game.claimPot(game.getPlayerByName(name));
+        int i = 0;
+
+        for (Player player : this.game.getPlayers()) {
+            if (player.getPlayerName().equals(name)) {
+                i++;
+                game.claimPot(game.getPlayerByName(name));
+                System.out.println("Congrats! " + name + " just got " + game.getPotBalance() + " chips richer!");
+                break;
+            }
+        }
+        if (i == 0) {
+            System.out.println("Player named " + name + " could not be found!");
+        }
     }
+
 
     private void doViewPot() {
         System.out.println("Pot balance: " +  game.getPotBalance());

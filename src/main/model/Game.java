@@ -33,14 +33,15 @@ public class Game {
                 break;
             }
         }
-        if (playerChosen != null) this.players.remove(playerChosen);
+        if (playerChosen != null) {
+            this.players.remove(playerChosen);
+        }
     }
 
     // REQUIRES: num > 0
     // MODIFIES: player balance and pot balance
     // EFFECTS: takes num out of player balance and transfers it into pot balance
     public void makeBet(Player player, int num) {
-
         player.subtractBalance(num);
         potBalance += num;
     }
