@@ -40,6 +40,7 @@ public class Game {
     // MODIFIES: player balance and pot balance
     // EFFECTS: takes num out of player balance and transfers it into pot balance
     public void makeBet(Player player, int num) {
+
         player.subtractBalance(num);
         potBalance += num;
     }
@@ -52,9 +53,6 @@ public class Game {
         potBalance = 0;
     }
 
-    public void printPlayerNames(Player listofplayers) {
-        System.out.println();
-    }
 
 
     // Getters
@@ -69,7 +67,7 @@ public class Game {
     // REQUIRES: valid player name that already exists in the list of players
     public Player getPlayerByName(String name) {
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).getPlayerName() == name) {
+            if (players.get(i).getPlayerName().equals(name)) {
                 return players.get(i);
             }
         }

@@ -50,9 +50,9 @@ public class PokerGame {
         } else if (command.equals("4")) {
             doMakeBet();
         } else if (command.equals("5")) {
-            doRemoveBet();
-        } else if (command.equals("6")) {
             doClaimPot();
+        } else if (command.equals("6")) {
+            doViewPot();
         } else {
             System.out.println("The key inputted is not valid!");
         }
@@ -72,19 +72,23 @@ public class PokerGame {
         System.out.println("\t2 --> Add Player");
         System.out.println("\t3 --> Remove Player");
         System.out.println("\t4 --> Make Bet");
-        System.out.println("\t5 --> Remove Bet");
-        System.out.println("\t6 --> Claim Pot");
+        System.out.println("\t5 --> Claim Pot");
+        System.out.println("\t6 --> View Pot Balance");
         System.out.println("\t7 --> Quit");
     }
 
 
-        private void doViewList() {
+    private void doViewList() {
+
+        if (game.getPlayers().size() == 0) {
+            System.out.println("There are no players!");
+        } else {
+            System.out.println("List of Players and their Balance:");
             for (Player player : this.game.getPlayers()) {
                 System.out.println("Name: " + player.getPlayerName() + " ~~~ " + "Bal: " + player.getBalance());
             }
         }
-
-
+    }
 
     private void doAddPlayer() {
         System.out.println("\nInsert player name:");
@@ -94,29 +98,52 @@ public class PokerGame {
 
         Player p = new Player(name, bal);
         game.addPlayer(p.getPlayerName(), p.getBalance());
+        System.out.println(p.getPlayerName() + " has been added with starting balance " + p.getBalance());
     }
 
     private void doRemovePlayer() {
         System.out.println("\nInsert player name you would like to remove:");
         String name = input.next();
 
-        game.removePlayer(name);
+        int i = 0;
+
+        for (Player player : this.game.getPlayers()) {
+            if (player.getPlayerName().equals(name)) {
+                i++;
+                game.removePlayer(name);
+                System.out.println("Player " + name + " has been removed.");
+                break;
+            }
+        }
+        if (i == 0) {
+            System.out.println("Player not found!");
+        }
+
     }
 
     private void doMakeBet() {
         System.out.println("\nSelect player to bet from:");
         String name = input.next();
         System.out.println("\nInsert amount you would like to bet");
-        int amount = Integer.parseInt(input.next());
+        String temp = input.next();
+        int amount = Integer.parseInt(temp);
 
-        game.makeBet(game.getPlayerByName(name), amount);
-
+        Player player = game.getPlayerByName(name);
+        game.makeBet(player, amount);
+        System.out.println(name + " has bet " + amount + " chips!");
     }
 
-    private void doRemoveBet() {
-    }
 
     private void doClaimPot() {
+        System.out.println("\nWho's our lucky winner?");
+        String name = input.next();
+
+        System.out.println("Congrats! " + name + " just got " + game.getPotBalance() + " chips richer!");
+        game.claimPot(game.getPlayerByName(name));
+    }
+
+    private void doViewPot() {
+        System.out.println("Pot balance: " +  game.getPotBalance());
     }
 
 }
