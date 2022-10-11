@@ -165,7 +165,7 @@ public class PokerGame {
 
 
     private void doViewPot() {
-        System.out.println("Pot balance: " +  game.getPotBalance());
+        System.out.println("Pot balance: " + game.getPotBalance());
     }
 
 }

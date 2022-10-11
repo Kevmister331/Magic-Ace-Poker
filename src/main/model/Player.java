@@ -1,6 +1,6 @@
 package model;
 
-// Represents a player's poker chips
+// Represents a player's name and poker chips
 public class Player {
     private String playerName;
     private int playerBalance;

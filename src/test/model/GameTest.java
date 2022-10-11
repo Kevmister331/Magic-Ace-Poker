@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for Game class
 class GameTest {
     private Game game;
 
@@ -85,7 +86,7 @@ class GameTest {
     }
 
     @Test
-    void  testGetPlayerByName() {
+    void testGetPlayerByName() {
         game.addPlayer("Kevin", 0);
         game.addPlayer("Eric", 0);
         assertEquals(game.getPlayerByName("Eric"), game.getPlayers().get(1));

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for Player class
 class PlayerTest {
     private Player player1; // starting bal: 0
     private Player player2; // starting bal: 100
