@@ -50,6 +50,9 @@ class GameTest {
         game.removePlayer("Kevin");
         assertEquals(game.getPlayers().size(), 2);
 
+        game.removePlayer("Jordan"); // NAME NOT IN LIST
+        assertEquals(game.getPlayers().size(), 2);
+
         game.removePlayer("Eric");
         assertEquals(game.getPlayers().size(), 1);
     }
@@ -90,6 +93,7 @@ class GameTest {
         game.addPlayer("Kevin", 0);
         game.addPlayer("Eric", 0);
         assertEquals(game.getPlayerByName("Eric"), game.getPlayers().get(1));
+        assertEquals(game.getPlayerByName("Jordan"), null);
     }
 
 

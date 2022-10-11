@@ -27,15 +27,6 @@ public class Player {
     }
 
 
-    // Setter methods
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public void setBalance(int balance) {
-        this.playerBalance = balance;
-    }
-
     // Getter methods
     public String getPlayerName() {
         return playerName;

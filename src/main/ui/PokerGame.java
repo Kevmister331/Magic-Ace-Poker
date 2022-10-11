@@ -153,8 +153,8 @@ public class PokerGame {
         for (Player player : this.game.getPlayers()) {
             if (player.getPlayerName().equals(name)) {
                 i++;
-                game.claimPot(game.getPlayerByName(name));
                 System.out.println("Congrats! " + name + " just got " + game.getPotBalance() + " chips richer!");
+                game.claimPot(game.getPlayerByName(name));
                 break;
             }
         }
