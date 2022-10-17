@@ -133,10 +133,14 @@ public class PokerGame {
         for (Player player : this.game.getPlayers()) {
             if (player.getPlayerName().equals(name)) {
                 i++;
-                game.makeBet(player, amount);
-                System.out.println(name + " has bet " + amount + " chips!");
-                break;
+                if (amount < player.getBalance()) {
+                    game.makeBet(player, amount);
+                    System.out.println(name + " has bet " + amount + " chips!");
+                } else {
+                    System.out.println(name + " does not have enough chips!");
+                }
             }
+            break;
         }
         if (i == 0) {
             System.out.println("Player named " + name + " could not be found!");

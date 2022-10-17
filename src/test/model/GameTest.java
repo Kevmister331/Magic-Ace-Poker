@@ -43,8 +43,6 @@ class GameTest {
         game.addPlayer("Eric", 0);
         game.addPlayer("Allan", 0);
 
-        System.out.println(game.getPlayers());
-
         assertEquals(game.getPlayers().size(), 3);
 
         game.removePlayer("Kevin");
@@ -67,6 +65,10 @@ class GameTest {
         assertEquals(game.getPotBalance(), 300);
         assertEquals(game.getPlayerByName("Kevin").getBalance(), 700);
         assertEquals(game.getPlayerByName("Eric").getBalance(), 1000);
+
+        game.makeBet(game.getPlayerByName("Kevin"), 1001);
+        assertEquals(game.getPlayerByName("Eric").getBalance(), 1000);
+        assertEquals(game.getPotBalance(), 300);
     }
 
     @Test

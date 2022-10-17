@@ -23,7 +23,6 @@ public class Game {
         this.players.add(new Player(playerName, balance));
     }
 
-    // REQUIRES: player name must exist in the game
     // MODIFIES: this
     // EFFECTS: removes a specified player from the list of players
     public void removePlayer(String name) {
@@ -39,16 +38,18 @@ public class Game {
         }
     }
 
-    // REQUIRES: num > 0
-    // MODIFIES: this
+    // REQUIRES: num > 0, num < player balance
+    // MODIFIES: this and pot balance
     // EFFECTS: takes num out of player balance and transfers it into pot balance
     public void makeBet(Player player, int num) {
-        player.subtractBalance(num);
-        potBalance += num;
+        if (num < player.getBalance()) {
+            player.subtractBalance(num);
+            potBalance += num;
+        }
     }
 
     // REQUIRES: player name must exist in the game
-    // MODIFIES: this
+    // MODIFIES: this and pot balance
     // EFFECTS: transfers pot balance to player balance, and resets pot balance to 0
     public void claimPot(Player player) {
         player.addBalance(potBalance);
@@ -65,8 +66,7 @@ public class Game {
         return potBalance;
     }
 
-    // REQUIRES: valid player name that already exists in the list of players
-    // EFFECTS: searches a player by their name and returns the player
+    // EFFECTS: searches a player by their name and returns the player, otherwise null
     public Player getPlayerByName(String name) {
         for (int i = 0; i < players.size(); i++) {
             if (players.get(i).getPlayerName().equals(name)) {
