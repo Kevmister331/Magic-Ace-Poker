@@ -38,7 +38,7 @@ public class Game {
         }
     }
 
-    // REQUIRES: num > 0, num < player balance
+    // REQUIRES: num > 0, num <= player balance
     // MODIFIES: this and pot balance
     // EFFECTS: takes num out of player balance and transfers it into pot balance
     public void makeBet(Player player, int num) {

@@ -66,6 +66,7 @@ public class PokerGame {
         input.useDelimiter("\n");
     }
 
+    // EFFECTS: displays the programs menu
     private void displayMenu() {
         System.out.println("\nSelect from:");
         System.out.println("\t1 --> View List of Players & Balance");
@@ -78,8 +79,8 @@ public class PokerGame {
     }
 
 
+    // EFFECTS: processes user command
     private void doViewList() {
-
         if (game.getPlayers().size() == 0) {
             System.out.println("There are no players!");
         } else {
@@ -90,6 +91,8 @@ public class PokerGame {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds player to game
     private void doAddPlayer() {
         System.out.println("\nInsert player name:");
         String name = input.next();
@@ -100,7 +103,8 @@ public class PokerGame {
         game.addPlayer(p.getPlayerName(), p.getBalance());
         System.out.println(p.getPlayerName() + " has been added with starting balance " + p.getBalance());
     }
-
+    // MODIFIES: this
+    // EFFECTS: removes player from game
     private void doRemovePlayer() {
         System.out.println("\nInsert player name you would like to remove:");
         String name = input.next();
@@ -120,7 +124,8 @@ public class PokerGame {
         }
 
     }
-
+    // MODIFIES: this
+    // EFFECTS: select a player to make a bet towards the pot
     private void doMakeBet() {
         System.out.println("\nSelect player to bet from:");
         String name = input.next();
@@ -147,7 +152,8 @@ public class PokerGame {
         }
     }
 
-
+    // MODIFIES: this
+    // EFFECTS: select a player to claim winnings from the pot
     private void doClaimPot() {
         System.out.println("\nWho's our lucky winner?");
         String name = input.next();
@@ -168,6 +174,7 @@ public class PokerGame {
     }
 
 
+    // EFFECTS: view the balance of the pot
     private void doViewPot() {
         System.out.println("Pot balance: " + game.getPotBalance());
     }
