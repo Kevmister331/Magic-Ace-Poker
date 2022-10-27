@@ -1,0 +1,13 @@
+{
+  "potBalance": 500,
+  "players": [
+    {
+      "playerBalance": 300,
+      "playerName": "Reginald"
+    },
+    {
+      "playerBalance": 200,
+      "playerName": "Jordan"
+    }
+  ]
+}

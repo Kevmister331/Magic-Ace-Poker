@@ -72,6 +72,19 @@ class GameTest {
     }
 
     @Test
+    void testMultipleBets() {
+        game.addPlayer("Kevin", 1000);
+        game.addPlayer("Eric", 1000);
+
+        game.makeBet(game.getPlayerByName("Kevin"), 300);
+        game.makeBet(game.getPlayerByName("Eric"), 600);
+
+        assertEquals(game.getPotBalance(), 900);
+        assertEquals(game.getPlayerByName("Kevin").getBalance(), 700);
+        assertEquals(game.getPlayerByName("Eric").getBalance(), 400);
+    }
+
+    @Test
     void testClaimPot() {
         game.addPlayer("Kevin", 1000);
         game.addPlayer("Eric", 1000);
@@ -96,6 +109,17 @@ class GameTest {
         game.addPlayer("Eric", 0);
         assertEquals(game.getPlayerByName("Eric"), game.getPlayers().get(1));
         assertEquals(game.getPlayerByName("Jordan"), null);
+    }
+
+    @Test
+    void testSetPotBalance() {
+        game.addPlayer("Kevin", 1000);
+        assertEquals(game.getPotBalance(), 0);
+        game.makeBet(game.getPlayerByName("Kevin"), 300);
+        assertEquals(game.getPotBalance(), 300);
+
+        game.setPotBalance(100);
+        assertEquals(game.getPotBalance(), 100);
     }
 
 

@@ -60,6 +60,13 @@ public class Game implements Writable {
         potBalance = 0;
     }
 
+    // REQUIRES: bal >= 0
+    // MODIFIES: this
+    // EFFECTS: set a pot balance value
+    public void setPotBalance(int bal) {
+        potBalance = bal;
+    }
+
 
     // Getters
     public List<Player> getPlayers() {
@@ -84,7 +91,7 @@ public class Game implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("players", playersToJson());
-        json.put("pot balance", potBalanceToJson());
+        json.put("potBalance", potBalance);
         return json;
     }
 
@@ -98,14 +105,5 @@ public class Game implements Writable {
 
         return jsonArray;
     }
-
-    // EFFECTS: returns players in this game as a JSON array
-    private JSONObject potBalanceToJson() {
-
-        JSONObject jsonObject = new JSONObject();
-        //jsonObject.put(potBalance.toJson);
-        return jsonObject;
-    }
-
 }
 

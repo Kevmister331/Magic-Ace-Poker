@@ -1,0 +1,13 @@
+{
+    "potBalance": 1500,
+    "players": [
+        {
+            "playerBalance": 800,
+            "playerName": "Porche"
+        },
+        {
+            "playerBalance": 250,
+            "playerName": "Lambda"
+        }
+    ]
+}

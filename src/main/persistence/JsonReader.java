@@ -45,6 +45,7 @@ public class JsonReader {
     private Game returnGame(JSONObject jsonObject) {
         Game game = new Game();
         addPlayers(game, jsonObject);
+        addPotBalance(game, jsonObject);
         return game;
     }
 
@@ -67,26 +68,15 @@ public class JsonReader {
         int playerBalance = jsonObject.getInt("playerBalance");
         game.addPlayer(playerName, playerBalance);
     }
-/*
-    // MODIFIES: Game
-    // EFFECTS: parses players from JSON object and adds them to the game
-    // parses players from object and adds them to list
-    private void addPotBalances(Game game, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("players");
-        for (Object json : jsonArray) {
-            JSONObject nextPotBalance = (JSONObject) json;
-            addPotBalance(game, nextPotBalance);
-        }
-    }
+
 
     // MODIFIES: Game
     // EFFECTS: parses thingy from JSON object and adds it to workroom
     // parses a player singular and adds to list (think of it as helper)
     private void addPotBalance(Game game, JSONObject jsonObject) {
-        String playerName = jsonObject.getString("playerName");
-        int playerBalance = jsonObject.getInt("playerBalance");
-        game.addPlayer(playerName, playerBalance);
+        int potBalance = jsonObject.getInt("potBalance");
+        game.setPotBalance(potBalance);
     }
-*/
+
 
 }

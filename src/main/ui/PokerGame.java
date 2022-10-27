@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 // Poker chip counter application
 public class PokerGame {
-    private static final String JSON_STORE = "./data/workroom.json";
+    private static final String JSON_STORE = "./data/pokergame.json";
     private Game game;
     private Scanner input;
     private JsonWriter jsonWriter;
@@ -158,14 +158,14 @@ public class PokerGame {
         for (Player player : this.game.getPlayers()) {
             if (player.getPlayerName().equals(name)) {
                 i++;
-                if (amount < player.getBalance()) {
+                if (amount <= player.getBalance()) {
                     game.makeBet(player, amount);
                     System.out.println(name + " has bet " + amount + " chips!");
                 } else {
                     System.out.println(name + " does not have enough chips!");
                 }
             }
-            break;
+
         }
         if (i == 0) {
             System.out.println("Player named " + name + " could not be found!");
