@@ -2,16 +2,28 @@ package ui;
 
 import model.Game;
 import model.Player;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 // Poker chip counter application
 public class PokerGame {
+    private static final String JSON_STORE = "./data/workroom.json";
     private Game game;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the poker game
-    public PokerGame() {
+    public PokerGame() throws FileNotFoundException {
+        input = new Scanner(System.in);
+        game = new Game();
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
         runGame();
     }
 
@@ -28,7 +40,7 @@ public class PokerGame {
             command = input.next();
             command = command.toLowerCase();
 
-            if (command.equals("7")) {
+            if (command.equals("9")) {
                 keepGoing = false;
             } else {
                 processCommand(command);
@@ -53,6 +65,10 @@ public class PokerGame {
             doClaimPot();
         } else if (command.equals("6")) {
             doViewPot();
+        } else if (command.equals("7")) {
+            doSavePokerGame();
+        } else if (command.equals("8")) {
+            doLoadPokerGame();
         } else {
             System.out.println("The key inputted is not valid!");
         }
@@ -75,7 +91,9 @@ public class PokerGame {
         System.out.println("\t4 --> Make Bet");
         System.out.println("\t5 --> Claim Pot");
         System.out.println("\t6 --> View Pot Balance");
-        System.out.println("\t7 --> Quit");
+        System.out.println("\t7 --> Save Poker Game");
+        System.out.println("\t8 --> Load Poker Game");
+        System.out.println("\t9 --> Quit");
     }
 
 
@@ -103,6 +121,7 @@ public class PokerGame {
         game.addPlayer(p.getPlayerName(), p.getBalance());
         System.out.println(p.getPlayerName() + " has been added with starting balance " + p.getBalance());
     }
+
     // MODIFIES: this
     // EFFECTS: removes player from game
     private void doRemovePlayer() {
@@ -124,6 +143,7 @@ public class PokerGame {
         }
 
     }
+
     // MODIFIES: this
     // EFFECTS: select a player to make a bet towards the pot
     private void doMakeBet() {
@@ -179,6 +199,30 @@ public class PokerGame {
         System.out.println("Pot balance: " + game.getPotBalance());
     }
 
+
+    // EFFECTS: saves the game to file
+    private void doSavePokerGame() {
+        try {
+            jsonWriter.open();
+            jsonWriter.write(game);
+            jsonWriter.close();
+            System.out.println("Saved game to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads game from file
+    private void doLoadPokerGame() {
+        try {
+            game = jsonReader.read();
+            System.out.println("Loaded game from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        }
+    }
 }
+
 
 

@@ -1,12 +1,16 @@
 package model;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // Represents a game with players and a pot
 
-public class Game {
+public class Game implements Writable {
     private List<Player> players;
     private int potBalance;
 
@@ -76,5 +80,32 @@ public class Game {
         return null;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("players", playersToJson());
+        json.put("pot balance", potBalanceToJson());
+        return json;
+    }
+
+    // EFFECTS: returns players in this game as a JSON array
+    private JSONArray playersToJson() {
+        JSONArray jsonArray = new JSONArray();
+
+        for (Player player : players) {
+            jsonArray.put(player.toJson());
+        }
+
+        return jsonArray;
+    }
+
+    // EFFECTS: returns players in this game as a JSON array
+    private JSONObject potBalanceToJson() {
+
+        JSONObject jsonObject = new JSONObject();
+        //jsonObject.put(potBalance.toJson);
+        return jsonObject;
+    }
 
 }
+

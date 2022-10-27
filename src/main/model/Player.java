@@ -1,7 +1,10 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 // Represents a player's name and poker chips
-public class Player {
+public class Player implements Writable {
     private String playerName;
     private int playerBalance;
 
@@ -37,4 +40,11 @@ public class Player {
     }
 
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("playerName", playerName);
+        json.put("playerBalance", playerBalance);
+        return json;
+    }
 }
