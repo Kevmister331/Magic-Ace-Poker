@@ -10,6 +10,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// Tests for JsonReader class
+// Some of this code in this class is sourced from the provided CPSC 210 JSON program
 class JsonReaderTest extends JsonTest {
 
     @Test

@@ -87,6 +87,7 @@ public class Game implements Writable {
         return null;
     }
 
+    // EFFECTS: Feeds information as JSON
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();

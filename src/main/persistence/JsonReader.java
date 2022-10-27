@@ -21,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads Game from file and returns it;
+    // EFFECTS: reads game from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Game read() throws IOException {
         String jsonData = readFile(source);
@@ -40,8 +40,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-
-    // EFFECTS: parses Game from JSON object and returns it
+    // EFFECTS: parses game from JSON object and returns it
     private Game returnGame(JSONObject jsonObject) {
         Game game = new Game();
         addPlayers(game, jsonObject);
@@ -49,9 +48,8 @@ public class JsonReader {
         return game;
     }
 
-    // MODIFIES: Game
+    // MODIFIES: game
     // EFFECTS: parses players from JSON object and adds them to the game
-    // parses players from object and adds them to list
     private void addPlayers(Game game, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("players");
         for (Object json : jsonArray) {
@@ -60,23 +58,18 @@ public class JsonReader {
         }
     }
 
-    // MODIFIES: Game
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-    // parses a player singular and adds to list (think of it as helper)
+    // MODIFIES: game
+    // EFFECTS: parses player from JSON object and adds it to the game
     private void addPlayer(Game game, JSONObject jsonObject) {
         String playerName = jsonObject.getString("playerName");
         int playerBalance = jsonObject.getInt("playerBalance");
         game.addPlayer(playerName, playerBalance);
     }
 
-
-    // MODIFIES: Game
-    // EFFECTS: parses thingy from JSON object and adds it to workroom
-    // parses a player singular and adds to list (think of it as helper)
+    // MODIFIES: game
+    // EFFECTS: parses pot balance from JSON object and adds it to the game
     private void addPotBalance(Game game, JSONObject jsonObject) {
         int potBalance = jsonObject.getInt("potBalance");
         game.setPotBalance(potBalance);
     }
-
-
 }
