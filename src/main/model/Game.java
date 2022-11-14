@@ -42,6 +42,12 @@ public class Game implements Writable {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes a specified player from the list of players through index
+    public void removePlayerByIndex(int index) {
+        this.players.remove(index);
+    }
+
     // REQUIRES: num > 0, num <= player balance
     // MODIFIES: this and pot balance
     // EFFECTS: takes num out of player balance and transfers it into pot balance
@@ -77,6 +83,10 @@ public class Game implements Writable {
         return potBalance;
     }
 
+    public Player getPlayerByIndex(int index) {
+        return players.get(index);
+    }
+
     // EFFECTS: searches a player by their name and returns the player, otherwise null
     public Player getPlayerByName(String name) {
         for (int i = 0; i < players.size(); i++) {
@@ -106,5 +116,6 @@ public class Game implements Writable {
 
         return jsonArray;
     }
+
 }
 

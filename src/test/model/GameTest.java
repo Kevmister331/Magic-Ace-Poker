@@ -122,5 +122,12 @@ class GameTest {
         assertEquals(game.getPotBalance(), 100);
     }
 
+    @Test
+    void testRemovePlayerByIndex() {
+        game.addPlayer("Kevin", 1000);
+        game.removePlayerByIndex(0);
+        assertEquals(0, game.getPlayers().size());
+
+    }
 
 }
