@@ -21,9 +21,9 @@ import java.util.Scanner;
 
 
 // Note: Parts of this code were taken from the course material
-//       this term and other official java documentation
+//       this term and other official java documentation.
 
-// Poker chip counter application
+// Poker chip counter application using a GUI
 public class PokerGameGui extends JPanel {
 
     private Button addPlayer;
@@ -48,11 +48,12 @@ public class PokerGameGui extends JPanel {
 
     private Game game;
 
+    // JSON
     private static final String JSON_STORE = "./data/pokergame.json";
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
-    private JLabel frameTitle;
+    // Jackpot Image
     private ImageIcon img;
     private JLabel jackpot;
 
@@ -185,12 +186,12 @@ public class PokerGameGui extends JPanel {
 
         int size = listModel.getSize();
 
-        if (size == 0) { //Nobody's left, disable firing.
+        if (size == 0) {
             removePlayer.setEnabled(false);
 
-        } else { //Select an index.
+        } else {
             if (index == listModel.getSize()) {
-                //removed item in last position
+
                 index--;
             }
 
@@ -264,11 +265,6 @@ public class PokerGameGui extends JPanel {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
         System.exit(1);
-    }
-
-    public void newGame() {
-
-
     }
 
     //EFFECTS: returns if a string is already in the listModel
