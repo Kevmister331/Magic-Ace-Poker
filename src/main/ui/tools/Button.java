@@ -6,12 +6,14 @@ import ui.PokerGameGui;
 import javax.swing.*;
 import java.awt.*;
 
-
+// The design structure of this class can be sourced to the SimpleDrawingPlayer
 public abstract class Button {
 
     protected JButton button;
     protected PokerGameGui gui;
 
+    // MODIFIES: this
+    // EFFECTS: constructs a button with parent in the GUI
     public Button(PokerGameGui gui, JComponent parent) {
         this.gui = gui;
         createButton(parent);
@@ -19,16 +21,7 @@ public abstract class Button {
         addListener(parent);
     }
 
-    // MODIFIES: this
-    // EFFECTS:  customizes the button used for this tool
-    protected JButton customizeButton(JButton button) {
-        button.setBorderPainted(true);
-        button.setFocusPainted(true);
-        button.setContentAreaFilled(true);
-        return button;
-    }
-
-    // EFFECTS: creates button to activate tool
+    // EFFECTS: creates the button to the parent component
     protected abstract void createButton(JComponent parent);
 
     // MODIFIES: parent
@@ -37,10 +30,18 @@ public abstract class Button {
         parent.add(button);
     }
 
+    // EFFECTS: adds a listener for this button
     protected abstract void addListener(JComponent parent);
 
 
+    // EFFECTS: enable/disables a button
     public void setEnabled(boolean b) {
         button.setEnabled(b);
     }
+
+    //
+    public void removeButton(JComponent parent) {
+
+    }
 }
+

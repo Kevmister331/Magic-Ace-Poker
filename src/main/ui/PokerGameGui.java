@@ -20,6 +20,9 @@ import java.io.IOException;
 import java.util.Scanner;
 
 
+// Note: Parts of this code were taken from the course material
+//       this term and other official java documentation
+
 // Poker chip counter application
 public class PokerGameGui extends JPanel {
 
@@ -29,12 +32,15 @@ public class PokerGameGui extends JPanel {
     private Button claimPot;
     private Button load;
     private Button exit;
+    private Button newGame;
+    private Button loadGame;
 
     private JFrame frame;
     private JPanel panel;
     private JList list;
     private DefaultListModel listModel;
     private JLabel potBalance;
+
 
     private JTextField addPlayerName;
     private JTextField addPlayerBalance;
@@ -46,15 +52,17 @@ public class PokerGameGui extends JPanel {
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
+    private JLabel frameTitle;
     private ImageIcon img;
     private JLabel jackpot;
 
 
-
+    //EFFECTS: main method to run the application
     public static void main(String[] args) {
         new PokerGameGui();
     }
 
+    //EFFECTS: constructor for PokerGameGui class
     public PokerGameGui() {
         initializeGame();
         initializeGraphics();
@@ -63,13 +71,14 @@ public class PokerGameGui extends JPanel {
     }
 
 
+    //EFFECTS: initializes the game and corresponding JSON files
     private void initializeGame() {
         game = new Game();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
     }
 
-    // Create and set up the GUI window
+    //EFFECTS: create and set up the GUI window
     private void initializeGraphics() {
         frame = new JFrame("Poker Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,12 +101,14 @@ public class PokerGameGui extends JPanel {
         jackpot = new JLabel(img);
 
 
-        //Display the window.
+        //displays the window
         frame.pack();
         frame.setSize(475, 400);
     }
 
+    //EFFECTS: constructs buttons, text fields, and labels
     private void generateButtons() {
+
         addPlayer = new AddPlayer(this, panel);
         addPlayerName = new JTextField(10);
         addPlayerBalance = new JTextField(10);
@@ -117,6 +128,7 @@ public class PokerGameGui extends JPanel {
         exit = new Exit(this, panel);
     }
 
+    //EFFECTS: constructs the list of players in a JList
     private void initializePlayers() {
         listModel = new DefaultListModel();
 
@@ -133,6 +145,9 @@ public class PokerGameGui extends JPanel {
         frame.setVisible(true);
     }
 
+    //REQUIRES: name to be a String, and text to be an int
+    //MODIFIES: this
+    //EFFECTS: adds a player into the game, displaying it in the JList
     public void doAddPlayer() {
         String name = addPlayerName.getText();
         String text = addPlayerBalance.getText();
@@ -160,6 +175,9 @@ public class PokerGameGui extends JPanel {
         addPlayerBalance.setText("");
     }
 
+    //REQUIRES: name to be a String, and text to be an int
+    //MODIFIES: this
+    //EFFECTS: removes a player from the game, displaying it in the JList
     public void doRemovePlayer() {
         int index = list.getSelectedIndex();
         listModel.remove(index);
@@ -182,8 +200,12 @@ public class PokerGameGui extends JPanel {
     }
 
 
+    //REQUIRES: a player to be selected
+    //MODIFIES: this
+    //EFFECTS: subtracts player balance and adds it to the pot balance
     public void doMakeBet() {
         panel.remove(jackpot);
+        panel.repaint();
 
         int index = list.getSelectedIndex();
         Player player = game.getPlayerByIndex(index);
@@ -200,6 +222,9 @@ public class PokerGameGui extends JPanel {
         listModel.set(index, player.getPlayerName() + " --- " + player.getBalance());
     }
 
+    //REQUIRES: a player to be selected
+    //MODIFIES: this
+    //EFFECTS: pot balance is deposited into player balance, pot balance resets to 0
     public void doClaimPot() {
         int index = list.getSelectedIndex();
         Player player = game.getPlayerByIndex(index);
@@ -210,6 +235,7 @@ public class PokerGameGui extends JPanel {
         listModel.set(index, player.getPlayerName() + " --- " + player.getBalance());
 
         panel.add(jackpot);
+        panel.repaint();
     }
 
     //EFFECTS: loads the data from JSON file
@@ -222,6 +248,8 @@ public class PokerGameGui extends JPanel {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
+        potBalance.setText("Pot Balance: " + game.getPotBalance());
+
     }
 
     //EFFECTS: exits and saves the data to JSON file
@@ -238,6 +266,12 @@ public class PokerGameGui extends JPanel {
         System.exit(1);
     }
 
+    public void newGame() {
+
+
+    }
+
+    //EFFECTS: returns if a string is already in the listModel
     protected boolean alreadyInList(String name) {
         return listModel.contains(name);
     }

@@ -127,7 +127,12 @@ class GameTest {
         game.addPlayer("Kevin", 1000);
         game.removePlayerByIndex(0);
         assertEquals(0, game.getPlayers().size());
+    }
 
+    @Test
+    void testGetPlayerByIndex() {
+        game.addPlayer("Kevin", 1000);
+        assertEquals(game.getPlayerByIndex(0), game.getPlayers().get(0));
     }
 
 }

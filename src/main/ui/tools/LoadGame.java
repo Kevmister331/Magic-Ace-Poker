@@ -8,9 +8,10 @@ import java.awt.event.ActionListener;
 
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 
-public class Load extends Button {
+public class LoadGame extends Button {
+
     //EFFECTS: constructs the button
-    public Load(PokerGameGui gui, JComponent parent) {
+    public LoadGame(PokerGameGui gui, JComponent parent) {
         super(gui, parent);
     }
 
@@ -24,7 +25,7 @@ public class Load extends Button {
     //EFFECTS: listener for the event
     @Override
     protected void addListener(JComponent parent) {
-        button.addActionListener(new Load.ButtonClickHandler());
+        button.addActionListener(new LoadGame.ButtonClickHandler());
     }
 
     private class ButtonClickHandler implements ActionListener {
