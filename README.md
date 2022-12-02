@@ -54,8 +54,8 @@ have any chips to simulate the betting system (the fun part of poker).
 - You can reload the state of my application by clicking "Load Game", and all the
   players and corresponding balances will reappear inside the JList.
 
-
 # Phase 4 Task 2
+
 Fri Nov 25 16:15:06 PST 2022
 Added Dylan to the game with a starting balance of 500!
 Fri Nov 25 16:15:10 PST 2022
@@ -69,17 +69,17 @@ Added Ronald to the game with a starting balance of 750!
 Fri Nov 25 16:15:34 PST 2022
 Removed Seungjin from the game!
 
-
 # Phase 4 Task 3
-The design structure of my project was relatively straightforward, as the Poker Game
-was organized into two primary classes: Game and Player, where a game consisted of 
-a list of players. 
 
-If I had extra time to work on my project, these are the refactoring changes I would 
+The design structure of my project was relatively straightforward, as the Poker Game
+was organized into two primary classes: Game and Player, where a game consisted of
+a list of players.
+
+If I had extra time to work on my project, these are the refactoring changes I would
 implement to improve the cohesion and coupling of my design:
 
-- I noticed that my AddPlayer and RemovePlayer method in the PokerGameGui class 
-  have a similar design, where I could cut out redundancy by utilizing abstraction. 
-- If I were to add additional functionality to the pot (such as resetting it), I would 
+- I noticed that my AddPlayer and RemovePlayer method in the PokerGameGui class
+  have a similar design, where I could cut out redundancy by utilizing abstraction.
+- If I were to add additional functionality to the pot (such as resetting it), I would
   create a new Pot class instead of having it inside the Game class. 
 
