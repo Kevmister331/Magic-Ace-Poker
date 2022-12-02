@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// This class represents the "Add Player" button to add a player
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 
 public class AddPlayer extends Button {

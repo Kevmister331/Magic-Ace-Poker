@@ -6,6 +6,7 @@ import ui.PokerGameGui;
 import javax.swing.*;
 import java.awt.*;
 
+// Abstract button class for the button functionalities
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 public abstract class Button {
 

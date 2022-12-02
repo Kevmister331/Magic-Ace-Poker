@@ -23,12 +23,16 @@ public class Game implements Writable {
     // REQUIRES: balance >= 0
     // MODIFIES: this
     // EFFECTS: adds a new player to the game with a starting balance
+    //          and tracks it in the event log
     public void addPlayer(String playerName, int balance) {
         this.players.add(new Player(playerName, balance));
+        EventLog.getInstance().logEvent(new Event("Added " + playerName
+                + " to the game with a starting balance of " + balance + "!"));
     }
 
     // MODIFIES: this
     // EFFECTS: removes a specified player from the list of players
+    //          and tracks the action in the event log
     public void removePlayer(String name) {
         Player playerChosen = null;
         for (Player player : this.players) {
@@ -38,13 +42,17 @@ public class Game implements Writable {
             }
         }
         if (playerChosen != null) {
+            EventLog.getInstance().logEvent(new Event("Removed " + playerChosen.getPlayerName() + " from the game!"));
             this.players.remove(playerChosen);
         }
     }
 
     // MODIFIES: this
     // EFFECTS: removes a specified player from the list of players through index
+    //          and tracks the action in the event log
     public void removePlayerByIndex(int index) {
+        EventLog.getInstance().logEvent(new Event("Removed "
+                + this.players.get(index).getPlayerName() + " from the game!"));
         this.players.remove(index);
     }
 
@@ -62,6 +70,9 @@ public class Game implements Writable {
     // MODIFIES: this and pot balance
     // EFFECTS: transfers pot balance to player balance, and resets pot balance to 0
     public void claimPot(Player player) {
+        EventLog.getInstance().logEvent(new Event(player.getPlayerName()
+                + " has claimed a jackpot of " + potBalance + "!"));
+
         player.addBalance(potBalance);
         potBalance = 0;
     }

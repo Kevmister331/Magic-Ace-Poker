@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// This class represents the "Exit" button to save game and exit
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 
 public class Exit extends Button {

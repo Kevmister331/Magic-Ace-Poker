@@ -1,6 +1,8 @@
 package ui;
 
 
+import model.Event;
+import model.EventLog;
 import model.Game;
 import model.Player;
 
@@ -159,7 +161,6 @@ public class PokerGameGui extends JPanel {
 
         // Might need to implement to make sure the balance is int
 
-        //User didn't type in a unique name...
         if (name.equals("") || alreadyInList(name)) {
             Toolkit.getDefaultToolkit().beep();
             addPlayerName.requestFocusInWindow();
@@ -260,11 +261,19 @@ public class PokerGameGui extends JPanel {
             jsonWriter.write(game);
             jsonWriter.close();
             System.out.println("Saved game to " + JSON_STORE);
+            printLog();
             System.exit(0);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
         System.exit(1);
+    }
+
+    //EFFECTS: prints log
+    private void printLog() {
+        for (Event e : EventLog.getInstance()) {
+            System.out.println(e);
+        }
     }
 
     //EFFECTS: returns if a string is already in the listModel

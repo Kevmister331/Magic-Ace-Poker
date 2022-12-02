@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// This class represents the "Make Bet" button to select a player and make bet
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 
 public class MakeBet extends Button {

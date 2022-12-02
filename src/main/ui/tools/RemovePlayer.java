@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// This class represents the "Remove Player" button to remove a player
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 
 public class RemovePlayer extends Button {

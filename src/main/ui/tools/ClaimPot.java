@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+// This class represents the "Claim Pot" button to claim pot winnings
 // The design structure of this class can be sourced to the SimpleDrawingPlayer
 
 public class ClaimPot extends Button {
