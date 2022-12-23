@@ -1,7 +1,5 @@
 # Poker Chip Ecosystem
 
-## Kevin Hu - CPSC 210 Term Project
-
 I will be creating a **virtual poker chip counter** that
 stimulates how poker chips are used in a real poker ecosystem.
 This includes players having a starting chip balance,
